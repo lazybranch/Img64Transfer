@@ -13,7 +13,9 @@ const OUTPUT_DIR = './animated_qrs';
  */
 
 async function generateAnimatedQRCodes(b64Img) {
-    if (await !fs.exists(OUTPUT_DIR)) {
+    try {
+        await fs.access(OUTPUT_DIR);
+    } catch {
         await fs.mkdir(OUTPUT_DIR);
     }
 
