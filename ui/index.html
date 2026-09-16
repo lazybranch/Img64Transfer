@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Img64Transfer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="app-title">Img64Transfer</h1>
+            <div class="mode-container">
+                <div class="radio-group" role="radiogroup" aria-label="Transfer Mode">
+                    <label class="radio-option">
+                        <input type="radio" name="transferMode" value="send" id="mode-send" checked>
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Send</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="transferMode" value="receive" id="mode-receive">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Receive</span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Send section: file selection box -->
+            <section id="send-section" class="selection-box">
+                <h2 class="box-title">Select Image to Transfer</h2>
+                <p class="box-description">
+                    Choose an image from your computer to encode and transmit via sequential QR codes.
+                </p>
+
+                <div class="action-area">
+                    <button id="select-file-btn" class="btn-select-file" type="button">
+                        <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Select File</span>
+                    </button>
+                </div>
+
+                <div id="file-status" class="file-status hidden">
+                    <span class="status-label">Selected path:</span>
+                    <span id="file-path-display" class="file-path"></span>
+                </div>
+            </section>
+
+            <!-- Receive section (placeholder for future QR scanning) -->
+            <section id="receive-section" class="selection-box hidden">
+                <h2 class="box-title">Receive Image</h2>
+                <p class="box-description">
+                    Camera scanner will capture incoming animated QR codes to reconstruct the original image.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
