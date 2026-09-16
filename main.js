@@ -1,24 +1,18 @@
-const { app, dialog } = require('electron');
+const { app } = require('electron');
 const { encode } = require('./utils/encoder');
 const { generateAnimatedQRCodes } = require('./utils/sequentialQRCodes');
+const { requestFileFromUser } = require('./utils/selectFile');
 
 app.whenReady().then(async () => {
-    const selection = await dialog.showOpenDialog({
-        title: 'Select an image',
-        properties: ['openFile'],
-        filters: [
-            {
-                name: 'Base64 compatible',
-                extensions: ['png', 'jpg', 'jpeg', 'webp']
-            }
-        ]
-    });
+    const imagePath = await requestFileFromUser();
 
-    if (!selection.canceled && selection.filePaths.length > 0) {
-        console.log("Img path:", selection.filePaths[0]);
-    } else {
-        console.log("Selection cancelled");
+    if (!imagePath) {
+        console.log("File not found. Closing app...");
+        app.quit();
+        return;
     }
+
+    console.log("Processing: ", imagePath);
     
     app.quit();
 });
